@@ -1,0 +1,33 @@
+
+T0D68 012:945 SEGGER J-Link V4.94h Log File (0001ms, 0338ms total)
+T0D68 012:945 DLL Compiled: Nov 28 2014 17:53:34 (0001ms, 0338ms total)
+T0D68 012:945 Logging started @ 2015-08-04 11:07 (0001ms, 0338ms total)
+T0D68 012:946 JLINK_SetWarnOutHandler(...) (0001ms, 0339ms total)
+T0D68 012:947 JLINK_OpenEx(...)
+Firmware: J-Link V9 compiled May 22 2015 17:20:50
+Hardware: V9.50
+S/N: 85531349
+Feature(s): GDB, RDI, FlashBP, FlashDL, JFlash, RDDI  returns O.K. (0275ms, 0614ms total)
+T0D68 013:222 JLINK_SetErrorOutHandler(...) (0000ms, 0614ms total)
+T0D68 013:223 JLINK_ExecCommand("ProjectFile = "C:\Users\wmd\Documents\uVision\we26n\JLinkSettings.ini"", ...)  returns 0x00 (0002ms, 0616ms total)
+T0D68 013:225 JLINK_ExecCommand("Device = STM32F071CB", ...)Device "STM32F071CB" selected (128 KB flash, 16 KB RAM).  returns 0x00 (0001ms, 0617ms total)
+T0D68 013:226 JLINK_ExecCommand("DisableConnectionTimeout", ...)  returns 0x01 (0000ms, 0617ms total)
+T0D68 013:226 JLINK_GetHardwareVersion()  returns 0x17318 (0000ms, 0617ms total)
+T0D68 013:226 JLINK_GetDLLVersion()  returns 49408 (0000ms, 0617ms total)
+T0D68 013:226 JLINK_GetFirmwareString(...) (0000ms, 0617ms total)
+T0D68 013:226 JLINK_GetDLLVersion()  returns 49408 (0000ms, 0617ms total)
+T0D68 013:227 JLINK_GetCompileDateTime() (0000ms, 0618ms total)
+T0D68 013:227 JLINK_GetFirmwareString(...) (0000ms, 0618ms total)
+T0D68 013:227 JLINK_GetHardwareVersion()  returns 0x17318 (0000ms, 0618ms total)
+T0D68 013:227 JLINK_TIF_Select(JLINKARM_TIF_SWD)  returns 0x00 (0004ms, 0622ms total)
+T0D68 013:231 JLINK_SetSpeed(50) (0001ms, 0623ms total)
+T0D68 013:233 JLINK_GetId() >0x108 TIF>Found SWD-DP with ID 0x8BB11477 >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x21 TIF> >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x21 TIF> >0x0D TIF> >0x21 TIF>STM32F0xxx: Can not connect to CPU. Trying connect under reset.RESET (pin 15) high, but should be low. Please check target hardware. >0x108 TIF>RESET (pin 15) high, but should be low. Please check target hardware. >0x108 TIF>Found SWD-DP with ID 0x8BB11477
+ >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x21 TIF> >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x21 TIF> >0x0D TIF> >0x21 TIF>
+  ***** Error: STM32F0xxx: Connecting to CPU via connect under reset failed.  returns 0x00000000 (0822ms, 1445ms total)
+T0D68 014:055 JLINK_GetId() >0x108 TIF>Found SWD-DP with ID 0x0BB11477 >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x21 TIF> >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x21 TIF> >0x0D TIF> >0x21 TIF>STM32F0xxx: Can not connect to CPU. Trying connect under reset.RESET (pin 15) high, but should be low. Please check target hardware. >0x108 TIF>Found SWD-DP with ID 0x0BB11477 >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x21 TIF> >0x0D TIF> >0x28 TIF>
+ >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x21 TIF> >0x0D TIF> >0x21 TIF>
+  ***** Error: STM32F0xxx: Connecting to CPU via connect under reset failed.  returns 0x00000000 (0370ms, 1815ms total)
+T0D68 014:432 JLINK_GetFirmwareString(...) (0001ms, 1816ms total)
+T0D68 017:055 JLINK_Close() (0002ms, 1818ms total)
+T0D68 017:055  (0002ms, 1818ms total)
+T0D68 017:055 Closed (0002ms, 1818ms total)
