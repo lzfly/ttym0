@@ -24,7 +24,6 @@ __asm  int  testsvc( intptr_t func, intptr_t arg0, intptr_t arg1 )
 void  SVC_Handler( intptr_t func, intptr_t pret, intptr_t arg0, intptr_t arg1 )
 {
 	int  iret;
-	uint8_t * pdat;
 
   switch ( func )
 	{

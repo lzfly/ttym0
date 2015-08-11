@@ -4,6 +4,7 @@
 #include "stm32f0xx_conf.h"
 
 #include "myqueue.h"
+#include "systick.h"
 #include "mysvch.h"
 #include "myuart.h"
 #include "mymsg.h"
@@ -369,7 +370,18 @@ void  PendSV_Handler( void )
 				{
 				case 0:
 					/**/
-					msg_send_to_host( 0, tlen-2, &(pbuf[0]) );
+				  if ( (tlen == 4) && (pbuf[0] == 0xAA) )
+					{
+						mytick_reset_mod( pbuf[1] );
+						
+						/**/
+						pbuf[0] = 0x55;
+						msg_send_to_host( 0, tlen-2, &(pbuf[0]) );
+					}
+					else
+					{
+						msg_send_to_host( 0, tlen-2, &(pbuf[0]) );
+					}
 				  break;
 				
 				default:

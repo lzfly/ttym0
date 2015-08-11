@@ -6,6 +6,16 @@
 #include "myuart.h"
 
 
+void  mdelay(__IO uint32_t nTime)
+{ 
+  __IO uint32_t TimingDelay;
+  TimingDelay = nTime * 48000;
+
+  while((TimingDelay--) != 0);
+}
+
+
+
 /**
   * @brief  Configures the different system clocks.
   * @param  None
@@ -14,7 +24,7 @@
 static void RCC_Configuration(void)
 {   
   /* Enable GPIO clock */
-  RCC_AHBPeriphClockCmd( RCC_AHBPeriph_GPIOA|RCC_AHBPeriph_GPIOB, ENABLE );
+  RCC_AHBPeriphClockCmd( RCC_AHBPeriph_GPIOA | RCC_AHBPeriph_GPIOB | RCC_AHBPeriph_GPIOC, ENABLE );
   
   /* Enable USARTs Clock */
   RCC_APB2PeriphClockCmd( RCC_APB2Periph_USART1, ENABLE );
@@ -34,6 +44,40 @@ static void GPIO_Configuration(void)
 {
   GPIO_InitTypeDef GPIO_InitStructure;
   
+	/* 433 RST : PA4 */
+	/* BLE RST : PB2 */	
+  /* zigbee RST : PC13 */	
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_4;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  GPIO_InitStructure.GPIO_OType = GPIO_OType_OD;
+  GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+	
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  GPIO_InitStructure.GPIO_OType = GPIO_OType_OD;
+  GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
+  GPIO_Init(GPIOB, &GPIO_InitStructure);
+  
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_13;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  GPIO_InitStructure.GPIO_OType = GPIO_OType_OD;
+  GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
+  GPIO_Init(GPIOC, &GPIO_InitStructure);
+	
+	/**/
+	GPIO_ResetBits( GPIOA, GPIO_Pin_4 );
+	GPIO_ResetBits( GPIOB, GPIO_Pin_2 );
+	GPIO_ResetBits( GPIOC, GPIO_Pin_13 );
+	mdelay( 100 );
+	GPIO_SetBits( GPIOA, GPIO_Pin_4 );
+	GPIO_SetBits( GPIOB, GPIO_Pin_2 );
+	GPIO_SetBits( GPIOC, GPIO_Pin_13 );
+	
+	
   /* USART1 Pins configuration ************************************************/
   GPIO_PinAFConfig(GPIOA, GPIO_PinSource9, GPIO_AF_1); 
   GPIO_PinAFConfig(GPIOA, GPIO_PinSource10, GPIO_AF_1);    
@@ -71,7 +115,6 @@ static void GPIO_Configuration(void)
   GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
   GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
   GPIO_Init(GPIOB, &GPIO_InitStructure);	
-	
 	
 }
 
@@ -119,16 +162,6 @@ static void NVIC_Configuration(void)
 }
 
 
-
-void  mdelay(__IO uint32_t nTime)
-{ 
-  __IO uint32_t TimingDelay;
-  TimingDelay = nTime * 48000;
-
-  while((TimingDelay--) != 0);
-}
-
-
 int  main( void )
 {
 	/**/
@@ -138,8 +171,10 @@ int  main( void )
 	
 	/**/
 	my_uart_init();
+
+	/* 48M / 8 = 6000000 */
+	SysTick_Config( 6000000 );
 	
-	/**/
 	// GPIO_SetBits( GPIOA, GPIO_Pin_1 );
 	
 	/**/
