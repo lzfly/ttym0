@@ -14,7 +14,7 @@ static  int  count[4] = { 0,0,0,0 };
 void  mytick_reset_mod( int idx )
 {
 	/**/
-	if ( (idx < 1) || (idx > 3) )
+	if ( (idx < 0) || (idx > 3) )
 	{
 		return;
 	}
@@ -22,18 +22,22 @@ void  mytick_reset_mod( int idx )
 	/**/
 	switch( idx )
 	{
+		case 0:
+			while(1);
+			break;
+		
 		case 1:
-			count[idx] = 2;
+			count[idx] = 4;
 			GPIO_ResetBits( GPIOA, GPIO_Pin_4 );
 			break;
 		
 		case 2:
-			count[idx] = 2;
+			count[idx] = 4;
 			GPIO_ResetBits( GPIOB, GPIO_Pin_2 );
 			break;
 		
 		case 3:
-			count[idx] = 2;
+			count[idx] = 4;
 			GPIO_ResetBits( GPIOC, GPIO_Pin_13 );
 			break;
 	}

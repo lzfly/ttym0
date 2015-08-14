@@ -137,6 +137,11 @@ int  fifo_deqall( ringbf_s * prb, int * plen, uint8_t * pdat )
 		return 1;
 	}
 	
+	if ( entrys > 64 )
+	{
+		entrys = 64;
+	}
+	
 	temp = prb->head;
 	
 	for ( i=0; i<entrys; i++ )

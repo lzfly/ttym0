@@ -87,7 +87,7 @@ uint8_t crc_step( uint8_t tcc, uint8_t tdat )
 
 
 /**/
-static uint8_t  sndbuf[64];
+static uint8_t  sndbuf[150];
 
 int  msg_send_to_host( int tidx, int tlen, uint8_t * pdat )
 {

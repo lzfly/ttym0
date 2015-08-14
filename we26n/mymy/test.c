@@ -4,7 +4,7 @@
 #include "stm32f0xx_conf.h"
 
 #include "myuart.h"
-
+#include "mymsg.h"
 
 void  mdelay(__IO uint32_t nTime)
 { 
@@ -22,16 +22,18 @@ void  mdelay(__IO uint32_t nTime)
   * @retval None
   */
 static void RCC_Configuration(void)
-{   
+{
   /* Enable GPIO clock */
   RCC_AHBPeriphClockCmd( RCC_AHBPeriph_GPIOA | RCC_AHBPeriph_GPIOB | RCC_AHBPeriph_GPIOC, ENABLE );
   
   /* Enable USARTs Clock */
   RCC_APB2PeriphClockCmd( RCC_APB2Periph_USART1, ENABLE );
+	
 	RCC_APB1PeriphClockCmd( RCC_APB1Periph_USART2, ENABLE );
 	RCC_APB1PeriphClockCmd( RCC_APB1Periph_USART3, ENABLE );
 	RCC_APB1PeriphClockCmd( RCC_APB1Periph_USART4, ENABLE );
 	
+	RCC_APB1PeriphClockCmd( RCC_APB1Periph_WWDG, ENABLE );
 }
 
 
@@ -164,6 +166,8 @@ static void NVIC_Configuration(void)
 
 int  main( void )
 {
+	uint8_t  tary[3];
+	
 	/**/
 	RCC_Configuration();
 	GPIO_Configuration();
@@ -171,16 +175,28 @@ int  main( void )
 	
 	/**/
 	my_uart_init();
-
+	
+	
+		/**/
+		tary[0] = 0x55;
+		tary[1] = 0xAA;
+		msg_send_to_host( 0, 2, tary );
+	
 	/* 48M / 8 = 6000000 */
 	SysTick_Config( 6000000 );
 	
 	// GPIO_SetBits( GPIOA, GPIO_Pin_1 );
 	
+	// 
+	WWDG_SetPrescaler( WWDG_Prescaler_8 );
+	WWDG_SetWindowValue( 0x7f );
+	WWDG_Enable( 0x7f );
+	
 	/**/
 	while(1)
 	{
-		mdelay( 100 );
+		WWDG_SetCounter( 0x7f );
+		__asm( "nop" );
 	}
 	
 	return 0;

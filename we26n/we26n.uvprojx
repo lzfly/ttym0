@@ -137,7 +137,7 @@
           <Target>
             <UseTarget>1</UseTarget>
             <LoadApplicationAtStartup>1</LoadApplicationAtStartup>
-            <RunToMain>1</RunToMain>
+            <RunToMain>0</RunToMain>
             <RestoreBreakpoints>1</RestoreBreakpoints>
             <RestoreWatchpoints>1</RestoreWatchpoints>
             <RestoreMemoryDisplay>1</RestoreMemoryDisplay>
@@ -472,6 +472,11 @@
               <FileName>stm32f0xx_usart.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\stlibs\src\stm32f0xx_usart.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f0xx_wwdg.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\stlibs\src\stm32f0xx_wwdg.c</FilePath>
             </File>
           </Files>
         </Group>
