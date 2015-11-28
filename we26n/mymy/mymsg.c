@@ -337,13 +337,30 @@ int  try_decode( uint8_t tdat, int * plen, uint8_t ** ppdat )
 
 static uint8_t  tmpbuf[64];
 
+void  reboot_to_loader( void )
+{
+	FLASH_Unlock();
+	
+	FLASH_ErasePage( 0x0800F800 );
+	
+	FLASH_ProgramWord( 0x0800F800, 0x11223344 );
+	FLASH_ProgramWord( 0x0800F804, 0x55667788 );
+	
+	FLASH_Lock();
+	
+	/**/
+	NVIC_SystemReset();
+	return;
+}
+
+
 void  PendSV_Handler( void )
 {
 	int  iret;
 	uint8_t  tdat;
 	int  tlen;
 	uint8_t * pbuf;	
-	
+	uint32_t  temp;
 
 	while (1)
 	{
@@ -358,7 +375,8 @@ void  PendSV_Handler( void )
 		if ( 0 == iret )
 		{
 				tdat = pbuf[tlen-2];
-			
+			  tlen = tlen - 2;
+				
 				if ( tdat > 3 )
 				{
 					/* error */
@@ -370,22 +388,40 @@ void  PendSV_Handler( void )
 				{
 				case 0:
 					/**/
-				  if ( (tlen == 4) && (pbuf[0] == 0xAA) )
+				  if ( tlen == 2 )
 					{
-						mytick_reset_mod( pbuf[1] );
-						
-						/**/
-						pbuf[0] = 0x55;
-						msg_send_to_host( 0, tlen-2, &(pbuf[0]) );
+						if ( pbuf[0] == 0xAA )
+						{
+							mytick_reset_mod( pbuf[1] );
+						  
+							/**/
+							pbuf[0] = 0x55;
+							msg_send_to_host( 0, tlen, &(pbuf[0]) );
+						}
+						else if ( pbuf[0] == 0xBB )
+						{
+							reboot_to_loader();
+						}
+					}
+					else if ( tlen == 5 )
+					{
+						if ( pbuf[0] == 0xCC )
+						{
+							temp = pbuf[4];
+							temp = (temp << 8) | pbuf[3];
+							temp = (temp << 8) | pbuf[2];
+							
+							my_uart_baudrate( pbuf[1], temp );
+						}
 					}
 					else
 					{
-						msg_send_to_host( 0, tlen-2, &(pbuf[0]) );
+						msg_send_to_host( 0, tlen, &(pbuf[0]) );
 					}
 				  break;
 				
 				default:
-				  my_uart_send( tdat, tlen-2, &(pbuf[0]) );
+				  my_uart_send( tdat, tlen, &(pbuf[0]) );
 				  break;
 				}
 		}

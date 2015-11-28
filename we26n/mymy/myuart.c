@@ -87,6 +87,45 @@ int  my_uart_init( void )
 
 
 
+int  my_uart_reinit( USART_TypeDef * USARTx, uint32_t baud )
+{
+	USART_InitTypeDef USART_InitStructure;
+	
+	USART_Cmd( USARTx, DISABLE );
+	
+	/**/
+  USART_InitStructure.USART_BaudRate = baud;
+  USART_InitStructure.USART_WordLength = USART_WordLength_8b;
+  USART_InitStructure.USART_StopBits = USART_StopBits_1;
+  USART_InitStructure.USART_Parity = USART_Parity_No;
+  USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
+  USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
+  
+  /* Prepare all uart to receive a data packet */
+  USART_Init( USARTx, &USART_InitStructure);
+
+	
+  USART_ITConfig( USARTx, USART_IT_RXNE, ENABLE );
+	USART_Cmd( USARTx, ENABLE );
+	return 0;
+}
+
+
+
+/* call by pendsv handler */
+int  my_uart_baudrate( int tidx, uint32_t baud )
+{
+	if ( (tidx < 0) || (tidx > 3) )
+	{
+		return 1;
+	}
+	
+	testsvc( tidx+4, (intptr_t)baud, 0 );
+	return 0;
+}
+
+
+
 /* call by pendsv handler */
 int  my_uart_send( int tidx, int tlen, uint8_t * pdat )
 {

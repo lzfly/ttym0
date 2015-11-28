@@ -61,61 +61,61 @@ __heap_limit
 
 
 ; Vector Table Mapped to Address 0 at Reset
-                AREA    RESET, DATA, READONLY
+                AREA    RESET, CODE, READONLY
                 EXPORT  __Vectors
                 EXPORT  __Vectors_End
                 EXPORT  __Vectors_Size
 
-__Vectors       DCD     __initial_sp                   ; Top of Stack
-                        DCD     Reset_Handler                  ; Reset Handler
-                        DCD     NMI_Handler                    ; NMI Handler
-                        DCD     HardFault_Handler              ; Hard Fault Handler
-                        DCD     0                              ; Reserved
-                        DCD     0                              ; Reserved
-                        DCD     0                              ; Reserved
-                        DCD     0                              ; Reserved
-                        DCD     0                              ; Reserved
-                        DCD     0                              ; Reserved
-                        DCD     0                              ; Reserved
-                        DCD     SVC_Handler                    ; SVCall Handler
-                        DCD     0                              ; Reserved
-                        DCD     0                              ; Reserved
-                        DCD     PendSV_Handler                 ; PendSV Handler
-                        DCD     SysTick_Handler                ; SysTick Handler
-
+__Vectors       DCD     __initial_sp                   	; Top of Stack
+                DCD     Reset_Handler                  	; Reset Handler
+                DCD     NMI_Handler                    	; NMI Handler
+                DCD     HardFault_Handler              	; Hard Fault Handler
+                DCD     0                              	; Reserved
+                DCD     0                              	; Reserved
+                DCD     0                              	; Reserved
+                DCD     0                              	; Reserved
+                DCD     0                              	; Reserved
+                DCD     0                              	; Reserved
+                DCD     0                              	; Reserved
+                DCD     SVC_Handler                    	; SVCall Handler
+                DCD     0                              	; Reserved
+                DCD     0                              	; Reserved
+                DCD     PendSV_Handler                 	; PendSV Handler
+                DCD     SysTick_Handler                	; SysTick Handler
+				
                 ; External Interrupts
-                DCD     WWDG_IRQHandler                ; Window Watchdog
-                DCD     PVD_VDDIO2_IRQHandler          ; PVD and VDDIO2 through EXTI Line detect
-                DCD     RTC_IRQHandler                 ; RTC through EXTI Line
-                DCD     FLASH_IRQHandler               ; FLASH
-                DCD     RCC_CRS_IRQHandler             ; RCC and CRS
-                DCD     EXTI0_1_IRQHandler             ; EXTI Line 0 and 1
-                DCD     EXTI2_3_IRQHandler             ; EXTI Line 2 and 3
-                DCD     EXTI4_15_IRQHandler            ; EXTI Line 4 to 15
+                DCD     WWDG_IRQHandler                	; Window Watchdog
+                DCD     PVD_VDDIO2_IRQHandler          	; PVD and VDDIO2 through EXTI Line detect
+                DCD     RTC_IRQHandler                 	; RTC through EXTI Line
+                DCD     FLASH_IRQHandler               	; FLASH
+                DCD     RCC_CRS_IRQHandler             	; RCC and CRS
+                DCD     EXTI0_1_IRQHandler             	; EXTI Line 0 and 1
+                DCD     EXTI2_3_IRQHandler             	; EXTI Line 2 and 3
+                DCD     EXTI4_15_IRQHandler            	; EXTI Line 4 to 15
                 DCD     TSC_IRQHandler                  ; TS
-                DCD     DMA1_Channel1_IRQHandler       ; DMA1 Channel 1
-                DCD     DMA1_Channel2_3_IRQHandler     ; DMA1 Channel 2 and Channel 3
-                DCD     DMA1_Channel4_5_6_7_IRQHandler ; DMA1 Channel 4, Channel 5, Channel 6 and Channel 7
-                DCD     ADC1_COMP_IRQHandler           ; ADC1, COMP1 and COMP2 
-                DCD     TIM1_BRK_UP_TRG_COM_IRQHandler ; TIM1 Break, Update, Trigger and Commutation
-                DCD     TIM1_CC_IRQHandler             ; TIM1 Capture Compare
-                DCD     TIM2_IRQHandler                ; TIM2
-                DCD     TIM3_IRQHandler                ; TIM3
-                DCD     TIM6_DAC_IRQHandler            ; TIM6 and DAC
-                DCD     TIM7_IRQHandler                ; TIM7
-                DCD     TIM14_IRQHandler               ; TIM14
-                DCD     TIM15_IRQHandler               ; TIM15
-                DCD     TIM16_IRQHandler               ; TIM16
-                DCD     TIM17_IRQHandler               ; TIM17
-                DCD     I2C1_IRQHandler                ; I2C1
-                DCD     I2C2_IRQHandler                ; I2C2
-                DCD     SPI1_IRQHandler                ; SPI1
-                DCD     SPI2_IRQHandler                ; SPI2
-                DCD     USART1_IRQHandler              ; USART1
-                DCD     USART2_IRQHandler              ; USART2
-                DCD     USART3_4_IRQHandler            ; USART3 and USART4
-                DCD     CEC_CAN_IRQHandler             ; CEC and CAN
-                DCD     USB_IRQHandler              ; USB
+                DCD     DMA1_Channel1_IRQHandler       	; DMA1 Channel 1
+                DCD     DMA1_Channel2_3_IRQHandler     	; DMA1 Channel 2 and Channel 3
+                DCD     DMA1_Channel4_5_6_7_IRQHandler 	; DMA1 Channel 4, Channel 5, Channel 6 and Channel 7
+                DCD     ADC1_COMP_IRQHandler           	; ADC1, COMP1 and COMP2 
+                DCD     TIM1_BRK_UP_TRG_COM_IRQHandler 	; TIM1 Break, Update, Trigger and Commutation
+                DCD     TIM1_CC_IRQHandler             	; TIM1 Capture Compare
+                DCD     TIM2_IRQHandler                	; TIM2
+                DCD     TIM3_IRQHandler                	; TIM3
+                DCD     TIM6_DAC_IRQHandler            	; TIM6 and DAC
+                DCD     TIM7_IRQHandler                	; TIM7
+                DCD     TIM14_IRQHandler               	; TIM14
+                DCD     TIM15_IRQHandler               	; TIM15
+                DCD     TIM16_IRQHandler               	; TIM16
+                DCD     TIM17_IRQHandler               	; TIM17
+                DCD     I2C1_IRQHandler                	; I2C1
+                DCD     I2C2_IRQHandler                	; I2C2
+                DCD     SPI1_IRQHandler                	; SPI1
+                DCD     SPI2_IRQHandler                	; SPI2
+                DCD     USART1_IRQHandler              	; USART1
+                DCD     USART2_IRQHandler              	; USART2
+                DCD     USART3_4_IRQHandler            	; USART3 and USART4
+                DCD     CEC_CAN_IRQHandler             	; CEC and CAN
+                DCD     USB_IRQHandler              	; USB
                 
 __Vectors_End
 
@@ -124,43 +124,62 @@ __Vectors_Size  EQU  __Vectors_End - __Vectors
                 AREA    |.text|, CODE, READONLY
 
 ; Reset handler routine
-Reset_Handler    PROC
-                 EXPORT  Reset_Handler                 [WEAK]
-        IMPORT  __main
-        IMPORT  SystemInit
+Reset_Handler   PROC
+                EXPORT  Reset_Handler                 [WEAK]
+				IMPORT  __main
+				IMPORT  SystemInit
 
-
-
-        LDR     R0, =__initial_sp          ; set stack pointer 
-        MSR     MSP, R0  
+; check flash addr, 0x0800F800, context is equ 0x11223344 ?
+				LDR		R0, =0x0800F800
+				LDR		R1, [R0]
+				LDR		R0, =0x11223344
+				CMP		R1,	R0
+				BNE 	NormalBoot
+				
+; jump to system flash loader.
+				LDR  	R0, =0x1FFFC800
+				LDR		R1, [R0, #0]
+				MSR     MSP, R1
+				LDR		R2, [R0, #4]
+				BX  	R2
+				NOP
+				B		.
+				
+NormalBoot
+			
+				LDR     R0, =__initial_sp          ; set stack pointer 
+				MSR     MSP, R0  
 
 ;;Check if boot space corresponds to test memory 
 
-        LDR R0,=0x00000004
-        LDR R1, [R0]
-        LSRS R1, R1, #24
-        LDR R2,=0x1F
-        CMP R1, R2
-        
-        BNE ApplicationStart  
+				LDR 	R0,	=0x00000004
+				LDR 	R1, [R0]
+				LSRS 	R1, R1, #24
+				LDR 	R2,	=0x1F
+				CMP 	R1, R2
+				
+				BNE ApplicationStart  
      
 ;; SYSCFG clock enable    
      
-        LDR R0,=0x40021018 
-        LDR R1,=0x00000001
-        STR R1, [R0]
+				LDR R0,=0x40021018 
+				LDR R1,=0x00000001
+				STR R1, [R0]
         
 ;; Set CFGR1 register with flash memory remap at address 0
 
-        LDR R0,=0x40010000 
-        LDR R1,=0x00000000
-        STR R1, [R0]
-ApplicationStart        
-                 LDR     R0, =SystemInit
-                 BLX     R0
-                 LDR     R0, =__main
-                 BX      R0
-                 ENDP
+				LDR R0,=0x40010000 
+				LDR R1,=0x00000000
+				STR R1, [R0]
+
+ApplicationStart
+
+
+				LDR     R0, =SystemInit
+                BLX     R0
+                LDR     R0, =__main
+                BX      R0
+                ENDP
 
 ; Dummy Exception Handlers (infinite loops which can be modified)
 
@@ -258,6 +277,8 @@ USB_IRQHandler
                 B       .
 
                 ENDP
+
+
 
                 ALIGN
 

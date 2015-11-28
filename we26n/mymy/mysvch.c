@@ -26,7 +26,7 @@ void  SVC_Handler( intptr_t func, intptr_t pret, intptr_t arg0, intptr_t arg1 )
 {
 	int  iret;
 
-	
+	/**/
   switch ( func )
 	{
 	case 0:
@@ -38,7 +38,7 @@ void  SVC_Handler( intptr_t func, intptr_t pret, intptr_t arg0, intptr_t arg1 )
 		}
 		iret = 0;
 		break;
-
+  
 	case 1:
 		if( (USART2->CR1 & USART_CR1_TXEIE) == 0 )
 		{
@@ -66,6 +66,24 @@ void  SVC_Handler( intptr_t func, intptr_t pret, intptr_t arg0, intptr_t arg1 )
 		iret = 0;
 		break;
 	
+	case 4:
+		iret = 0;
+		break;
+	
+	case 5:
+		my_uart_reinit( USART3, (uint32_t)arg0 );
+		iret = 0;
+		break;
+	
+	case 6:
+		my_uart_reinit( USART4, (uint32_t)arg0 );
+		iret = 0;
+		break;
+	
+	case 7:
+		my_uart_reinit( USART4, (uint32_t)arg0 );
+		iret = 0;
+		break;
 	
 	default:
 		iret = -1;

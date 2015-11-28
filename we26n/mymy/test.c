@@ -6,6 +6,8 @@
 #include "myuart.h"
 #include "mymsg.h"
 
+uint32_t  tvvvv = 0;
+
 void  mdelay(__IO uint32_t nTime)
 { 
   __IO uint32_t TimingDelay;
@@ -177,21 +179,26 @@ int  main( void )
 	my_uart_init();
 	
 	
-		/**/
-		tary[0] = 0x55;
-		tary[1] = 0xAA;
-		msg_send_to_host( 0, 2, tary );
+	/**/
+	tary[0] = 0x55;
+	tary[1] = 0xAA;
+	msg_send_to_host( 0, 2, tary );
 	
 	/* 48M / 8 = 6000000 */
 	SysTick_Config( 6000000 );
 	
 	// GPIO_SetBits( GPIOA, GPIO_Pin_1 );
-	
-	// 
+
+#if 1
+	// APB clock (PCLK) = HCLK / RCC_CFGR.PPRE = 48M.
+	// 48M / 4096 = 11718,  11718 / 8 = 1464
+	// 0x7F - 0x3F = 0x40 = 64, 1464 / 64 = 23 
+	// 1 / 23 = 43.7158 ms
 	WWDG_SetPrescaler( WWDG_Prescaler_8 );
 	WWDG_SetWindowValue( 0x7f );
 	WWDG_Enable( 0x7f );
-	
+#endif
+
 	/**/
 	while(1)
 	{

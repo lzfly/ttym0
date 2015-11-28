@@ -478,6 +478,21 @@
               <FileType>1</FileType>
               <FilePath>.\stlibs\src\stm32f0xx_wwdg.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f0xx_syscfg.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\stlibs\src\stm32f0xx_syscfg.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f0xx_rtc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\stlibs\src\stm32f0xx_rtc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f0xx_flash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\stlibs\src\stm32f0xx_flash.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
